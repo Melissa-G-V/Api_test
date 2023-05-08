@@ -75,10 +75,6 @@ export const usuarioUpdate = async (req, res) => {
 };
 
 
-
-
-
-
 export const admin_CreateAdm = async (req, res) => {
     const { nome, senha, email, telefone, cpf, isAdmin } = req.body
   
@@ -86,9 +82,11 @@ export const admin_CreateAdm = async (req, res) => {
       res.status(400).json({ id: 0, msg: "Error... forgot to input some value" })
       return
     }
+    const salt = await bcrypt.genSalt(8);
+    const hash = await bcrypt.hash(senha, salt);
     try {
       const admin = await  Usuario.create({
-        nome, senha, email, telefone, cpf, isAdmin
+        nome, senha:hash, email, telefone, cpf, isAdmin
       });
       res.status(201).json(admin)
     } catch (error) {

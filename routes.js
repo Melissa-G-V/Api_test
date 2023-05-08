@@ -11,19 +11,21 @@ import {
   medicamentoIndex,
   medicamentoUpdate,
   medicamentoDelete,
-  pesqNomeMedicamento
-} from "./Controllers/medicamentoController.js"
+  pesqNomeMedicamento,
+} from "./Controllers/medicamentoController.js";
 
 const router = Router();
+
 //usuarios
 router
   .get("/usuarios", usuarioIndex)
   .post("/usuario/create", usuarioCreate)
   .put("/usuario/update/:pesq", usuarioUpdate)
   .delete("/usuario/delete/:id", usuarioDelete);
+
+
 // rota admin
 router.post("/usuario/cria/admin", admin_CreateAdm);
-
 //medicamento
 
 router
@@ -31,6 +33,8 @@ router
   .post("/med/create", medicamentoCreate)
   .put("/med/update/:pesq", medicamentoUpdate)
   .delete("/med/delete/:id", medicamentoDelete)
-  .get('/med/pesq/:pesq%', pesqNomeMedicamento)
+  .get("/med/pesq/:pesq%", pesqNomeMedicamento);
+
+  //paciente
 
 export default router;

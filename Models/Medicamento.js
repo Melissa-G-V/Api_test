@@ -24,6 +24,11 @@ export const Medicamento = sequelize.define(
       type: DataTypes.REAL,
       allowNull: false,
     },
+    validade:{
+      type: DataTypes.DATE,
+      allowNull: false,
+    },
+    
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
