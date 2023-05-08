@@ -2,7 +2,6 @@ import { Router } from "express";
 import {
   usuarioCreate,
   usuarioIndex,
-  admin_CreateAdm,
   usuarioDelete,
   usuarioUpdate,
 } from "./Controllers/usuarioController.js";
@@ -25,7 +24,7 @@ router
 
 
 // rota admin
-router.post("/usuario/cria/admin", admin_CreateAdm);
+// router.post("/usuario/cria/admin", admin_CreateAdm);
 //medicamento
 
 router
