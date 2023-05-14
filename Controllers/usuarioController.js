@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { Usuario } from "../Models/usuario.js";
+import { Usuario } from "../Models/Usuario.js";
 import { Op } from "sequelize";
 
 export const usuarioIndex = async (req, res) => {
