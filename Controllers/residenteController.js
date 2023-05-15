@@ -1,5 +1,5 @@
 
-import { Paciente } from "../Models/Paciente.js";
+import { Paciente } from "../Models/Residente.js";
 import { sequelize } from "../Databases/dbconection.js";
 import { Responsavel } from "../Models/Responsavel.js";
 import { Op } from "sequelize";
