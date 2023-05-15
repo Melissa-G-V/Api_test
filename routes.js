@@ -12,7 +12,17 @@ import {
   medicamentoDelete,
   pesqNomeMedicamento,
 } from "./Controllers/medicamentoController.js";
-import { responsavelCreate, responsavelndex } from "./Controllers/responsavelController.js";
+import {
+  responsavelCreate,
+  responsavelndex,
+} from "./Controllers/responsavelController.js";
+import {
+  pesqResidenteNome,
+  residenteCreate,
+  residenteDelete,
+  residenteIndex,
+  residenteUpdate,
+} from "./Controllers/residenteController.js";
 
 const router = Router();
 //usuario
@@ -21,7 +31,6 @@ router
   .post("/usuario/create", usuarioCreate)
   .put("/usuario/update/:pesq", usuarioUpdate)
   .delete("/usuario/delete/:id", usuarioDelete);
-
 
 // rota admin
 // router.post("/usuario/cria/admin", admin_CreateAdm);
@@ -33,17 +42,17 @@ router
   .delete("/med/delete/:id", medicamentoDelete)
   .get("/med/pesq/:pesq%", pesqNomeMedicamento);
 
-//paciente
+//residente
 router
-  .get('/pacientes', pacienteIndex)
-  .post('/pacientes', pacienteCreate)
-  .delete('/pacientes', pacienteDelete)
-  .put('/pacientes', pacienteUpdate)
-  .get('/pacientes/:nome', pesqPacienteNome)
+  .get("/residente", residenteIndex)
+  .post("/residente", residenteCreate)
+  .delete("/residente", residenteDelete)
+  .put("/residente", residenteUpdate)
+  .get("/residente/:nome", pesqResidenteNome);
 
 //responsavel
 router
-  .get("/resp", responsavelndex)
-  .post("/resp/create", responsavelCreate)
+.get("/resp", responsavelndex)
+.post("/resp/create", responsavelCreate);
 
 export default router;

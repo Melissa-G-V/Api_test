@@ -23,7 +23,7 @@ async function conecta_db() {
 conecta_db()
 
 app.get('/', (req, res) => {
-  res.send('API de Cadastro de Jogadores')
+  res.send('API Quinta Urbana')
 })
 
 app.listen(port, () => {
