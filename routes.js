@@ -12,6 +12,7 @@ import {
   medicamentoDelete,
   pesqNomeMedicamento,
 } from "./Controllers/medicamentoController.js";
+import { responsavelCreate, responsavelndex } from "./Controllers/responsavelController.js";
 
 const router = Router();
 
@@ -35,5 +36,10 @@ router
   .get("/med/pesq/:pesq%", pesqNomeMedicamento);
 
   //paciente
+
+  //responsavel
+router
+.get("/resp",responsavelndex )
+.post("/resp/create" , responsavelCreate)
 
 export default router;

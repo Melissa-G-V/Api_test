@@ -5,6 +5,7 @@ export const Responsavel =  sequelize.define("Responsavel",{
     id:{
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement:true,
         allowNull: false
     },
     nome:{
@@ -16,11 +17,11 @@ export const Responsavel =  sequelize.define("Responsavel",{
         allowNull:false,
     },
 contato:{
-    type: DataTypes.NUMBER(10),
+    type: DataTypes.NUMBER(11),
     allowNull: false,
     validate: {
       isNumeric: {
-        args: [10, 10],
+        args: [9, 11],
         msg: "Telefone inválido",
       },
     },
