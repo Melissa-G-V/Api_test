@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { Usuario } from "../Models/usuario.js";
+import { Usuario } from "../Models/Usuario.js";
 import { Op } from "sequelize";
 
 export const usuarioIndex = async (req, res) => {
@@ -12,26 +12,27 @@ export const usuarioIndex = async (req, res) => {
 };
 
 export const usuarioCreate = async (req, res) => {
-  const { nome, telefone, email, cpf, senha } = req.body;
-  if (!nome || !telefone || !email || !cpf || !senha) {
-    res
-      .status(401)
-      .json({ id: 0, msg: "Erro .... complete os dados solicitados" });
+  const { nome, senha, email, telefone, cpf, isAdmin } = req.body;
+
+  if (!nome ||  !email || !telefone || !cpf || !senha || !isAdmin) {
+    console.log(typeof(isAdmin));
+    res.status(400).json({ id: 0, msg: "Error... forgot to input some value" });
     return;
   }
   const salt = await bcrypt.genSalt(8);
   const hash = await bcrypt.hash(senha, salt);
   try {
-    const usuario = await Usuario.create({
+    const admin = await Usuario.create({
       nome,
-      telefone,
       email,
+      telefone,
       cpf,
       senha: hash,
+      isAdmin,
     });
-    res.status(200).json(usuario);
+    res.status(201).json(admin);
   } catch (error) {
-    res.status(500).json(error);
+    res.status(400).send(error);
   }
 };
 
@@ -49,8 +50,8 @@ export const usuarioDelete = async (req, res) => {
 
 export const usuarioUpdate = async (req, res) => {
   const { pesq } = req.params;
-  const { nome, telefone, cpf } = req.body;
-  if (!nome || !telefone || !cpf ) {
+  const { nome, telefone } = req.body;
+  if (!nome || !telefone ) {
     res
       .status(401)
       .json({ id: 0, msg: "Erro .... complete os dados solicitados" });
@@ -60,7 +61,6 @@ export const usuarioUpdate = async (req, res) => {
       {
         nome,
         telefone,
-        cpf,
       },
       {
         where: {
@@ -73,27 +73,3 @@ export const usuarioUpdate = async (req, res) => {
     res.status(200).json(error);
   }
 };
-
-
-
-
-
-
-export const admin_CreateAdm = async (req, res) => {
-    const { nome, senha, email, telefone, cpf, isAdmin } = req.body
-  
-    if (!nome || !senha || !email || !telefone || !cpf || !isAdmin) {
-      res.status(400).json({ id: 0, msg: "Error... forgot to input some value" })
-      return
-    }
-    try {
-      const admin = await  Usuario.create({
-        nome, senha, email, telefone, cpf, isAdmin
-      });
-      res.status(201).json(admin)
-    } catch (error) {
-      res.status(400).send(error)
-    }
-  }
-  
-  

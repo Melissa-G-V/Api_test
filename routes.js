@@ -11,14 +11,19 @@ router
   .put("/usuario/update/:pesq", usuarioUpdate)
   .delete("/usuario/delete/:id", usuarioDelete);
 
-router.post("/usuario/create/admin", admin_CreateAdm);
+
+// rota admin
+// router.post("/usuario/cria/admin", admin_CreateAdm);
+//medicamento
 
 router
   .get("/med", medicamentoIndex)
   .post("/med/create", medicamentoCreate)
   .put("/med/update/:pesq", medicamentoUpdate)
   .delete("/med/delete/:id", medicamentoDelete)
-  .get('/med/pesq/:pesq%', pesqNomeMedicamento)
+  .get("/med/pesq/:pesq%", pesqNomeMedicamento);
+
+  //paciente
 
 router
   .get('/pacientes', pacienteIndex)
