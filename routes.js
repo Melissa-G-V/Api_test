@@ -1,21 +1,10 @@
 import { Router } from "express";
-import {
-  usuarioCreate,
-  usuarioIndex,
-  usuarioDelete,
-  usuarioUpdate,
-} from "./Controllers/usuarioController.js";
-import {
-  medicamentoCreate,
-  medicamentoIndex,
-  medicamentoUpdate,
-  medicamentoDelete,
-  pesqNomeMedicamento,
-} from "./Controllers/medicamentoController.js";
+import { usuarioCreate, usuarioIndex, admin_CreateAdm, usuarioDelete, usuarioUpdate} from "./Controllers/usuarioController.js";
+import { medicamentoCreate, medicamentoIndex, medicamentoUpdate, medicamentoDelete, pesqNomeMedicamento} from "./Controllers/medicamentoController.js"
+import { pacienteCreate, pacienteDelete, pacienteIndex, pacienteUpdate, pesqPacienteNome } from "./Controllers/pacienteController.js";
 
 const router = Router();
 
-//usuarios
 router
   .get("/usuarios", usuarioIndex)
   .post("/usuario/create", usuarioCreate)
@@ -35,5 +24,12 @@ router
   .get("/med/pesq/:pesq%", pesqNomeMedicamento);
 
   //paciente
+
+router
+  .get('/pacientes', pacienteIndex)
+  .post('/pacientes', pacienteCreate)
+  .delete('/pacientes', pacienteDelete)
+  .put('/pacientes', pacienteUpdate)
+  .get('/pacientes/:nome', pesqPacienteNome)
 
 export default router;
