@@ -1,10 +1,14 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../Databases/dbconection.js";
-export const Horarios = sequelize.define('Horarios', {
+export const Cuidado = sequelize.define('Cuidado', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true
+    },
+    vezes_dia:{
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     horario_1: {
         type: DataTypes.STRING(100),
@@ -30,10 +34,15 @@ export const Horarios = sequelize.define('Horarios', {
         type: DataTypes.REAL,
         allowNull: false,   
     },
-    isActive:{
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: 1,
-    }
-
+    data_inicio:{
+        type:DataTypes.DATE,
+        allowNull: false,
+        validate:{
+            //criar validação de data 
+        }
+    },
+    data_termino:{
+        type:DataTypes.DATE,
+        allowNull: true,
+    },
   });
