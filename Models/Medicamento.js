@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../Databases/dbconection.js";
+import { Prescricao } from "./Prescricao.js";
 export const Medicamento = sequelize.define(
   "Medicamento",
   {
@@ -36,3 +37,16 @@ export const Medicamento = sequelize.define(
   },
 }, {paranoid: true}
 );
+
+Medicamento.belongsTo(Prescricao, {
+  foreignKey: {
+    name: 'prescricao_id',
+    allowNull: false
+  },
+  onDelete: 'RESTRICT',
+  onUpdate: 'CASCADE'
+})
+
+Prescricao.hasMany(Medicamento, {
+  foreignKey: 'prescricao_id'
+})

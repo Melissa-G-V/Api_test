@@ -12,7 +12,7 @@ export const Usuario = sequelize.define("Usuario", {
     allowNull: false,
   },
   telefone: {
-    type: DataTypes.NUMBER(10),
+    type: DataTypes.BIGINT,
     allowNull: false,
     validate: {
       isNumeric: {
@@ -32,7 +32,7 @@ export const Usuario = sequelize.define("Usuario", {
     },
   },
   cpf: {
-    type: DataTypes.NUMBER(11),
+    type: DataTypes.BIGINT,
     allowNull: false,
     unique: true,
     validate: {
@@ -43,7 +43,7 @@ export const Usuario = sequelize.define("Usuario", {
     },
   },
   senha: {
-    type: DataTypes.STRING(8),
+    type: DataTypes.STRING(100),
     allowNull: false,
   },
   isAdmin: {

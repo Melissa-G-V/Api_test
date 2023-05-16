@@ -3,6 +3,8 @@
 
 ### Node ###
 # Logs
+*.db3
+*.env
 logs
 *.log
 npm-debug.log*

@@ -1,4 +1,4 @@
-import {  DataTypes } from "sequelize";
+import { DataTypes } from "sequelize";
 import { sequelize } from "../Databases/dbconection.js";
 
 export const Responsavel =  sequelize.define("Responsavel",{
@@ -17,7 +17,7 @@ export const Responsavel =  sequelize.define("Responsavel",{
         allowNull:false,
     },
 contato:{
-    type: DataTypes.NUMBER(11),
+    type: DataTypes.BIGINT,
     allowNull: false,
     validate: {
       isNumeric: {

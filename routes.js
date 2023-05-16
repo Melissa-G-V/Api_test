@@ -5,6 +5,7 @@ import {
   usuarioDelete,
   usuarioUpdate,
 } from "./Controllers/usuarioController.js";
+
 import {
   medicamentoCreate,
   medicamentoIndex,
@@ -23,6 +24,10 @@ import {
   residenteIndex,
   residenteUpdate,
 } from "./Controllers/residenteController.js";
+import { cuidadosIndex } from "./Controllers/cuidadosController.js";
+import { alergiaIndex } from "./Controllers/alergiaController.js";
+import { anotacaoIndex } from "./Controllers/anotacoesController.js";
+import { prontuarioIndex } from "./Controllers/prontuariosController.js";
 
 const router = Router();
 //usuario
@@ -54,5 +59,17 @@ router
 router
 .get("/resp", responsavelndex)
 .post("/resp/create", responsavelCreate);
+
+router
+.get("/cuidados",cuidadosIndex);
+
+router
+.get("/alergias",alergiaIndex)
+
+router
+.get("/anotacoes",anotacaoIndex)
+
+router
+.get("/prontuarios",prontuarioIndex)
 
 export default router;

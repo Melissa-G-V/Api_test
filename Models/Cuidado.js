@@ -1,6 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../Databases/dbconection.js";
-export const Cuidado = sequelize.define('Cuidado', {
+import { Residente } from "./Residente.js";
+
+export const Cuidado =  sequelize.define("Cuidado", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -46,3 +48,18 @@ export const Cuidado = sequelize.define('Cuidado', {
         allowNull: true,
     },
   });
+
+
+Cuidado.belongsTo(Residente, {
+    foreignKey: {
+      name: 'residente_id',
+      allowNull: false
+    },
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE'
+  })
+  
+Residente.hasMany(Cuidado, {
+    foreignKey: 'residente_id'
+})
+  

@@ -1,5 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../Databases/dbconection.js";
+import { Prescricao } from "./Prescricao.js";
+import { Responsavel } from "./Responsavel.js";
+import { Prontuario } from "./Prontuario.js";
 
 export const Residente = sequelize.define("Residente", {
   id: {
@@ -9,7 +12,7 @@ export const Residente = sequelize.define("Residente", {
     unique: true,
   },
   numero_registro: {
-    type: DataTypes.NUMBER(6),
+    type: DataTypes.BIGINT(6),
     unique: true,
     validate:{
         len: [6,6]
@@ -24,7 +27,7 @@ export const Residente = sequelize.define("Residente", {
     allowNull: false,
   },
   cep: {
-    type: DataTypes.NUMBER(8),
+    type: DataTypes.BIGINT(8),
     allowNull: false,
     validate: {
          len: [8,8]   
@@ -72,5 +75,46 @@ export const Residente = sequelize.define("Residente", {
             this.setDataValue('ingresso', new Date(value))
         },
     },
-},
-{paranoid: true});
+});
+
+
+
+Residente.belongsTo(Prescricao, {
+  foreignKey: {
+    name: 'prescricao_id',
+    allowNull: false
+  },
+  onDelete: 'RESTRICT',
+  onUpdate: 'CASCADE'
+})
+
+Prescricao.hasMany(Residente, {
+  foreignKey: 'prescricao_id'
+})
+
+Residente.belongsTo(Responsavel, {
+  foreignKey: {
+    name: 'responsavel_id',
+    allowNull: false
+  },
+  onDelete: 'RESTRICT',
+  onUpdate: 'CASCADE'
+})
+
+Responsavel.hasMany(Residente, {
+  foreignKey: 'responsavel_id'
+})
+
+
+Residente.belongsTo(Prontuario, {
+  foreignKey: {
+    name: 'prontuarios_id',
+    allowNull: false
+  },
+  onDelete: 'RESTRICT',
+  onUpdate: 'CASCADE'
+})
+
+Prontuario.hasMany(Residente, {
+  foreignKey: 'prontuarios_id'
+})

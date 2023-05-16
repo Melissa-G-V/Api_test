@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../Databases/dbconection.js";
+import { Usuario } from "./Usuario.js"
 
 export const Anotacao = sequelize.define("Anotacao",{
  id: {
@@ -17,3 +18,17 @@ export const Anotacao = sequelize.define("Anotacao",{
   allowNull: true
  },
 })
+
+Anotacao.belongsTo(Usuario, {
+    foreignKey: {
+      name: 'usuario_id',
+      allowNull: false
+    },
+    onDelete: 'RESTRICT',
+    onUpdate: 'CASCADE'
+  })
+  
+Usuario.hasMany(Anotacao, {
+    foreignKey: 'usuario_id'
+})
+  
